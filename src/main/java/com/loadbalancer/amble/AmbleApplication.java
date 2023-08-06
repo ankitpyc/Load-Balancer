@@ -1,15 +1,17 @@
 package com.loadbalancer.amble;
 
+import com.loadbalancer.amble.KeepAlive.TCPServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.loadbalancer.*")
+@EnableScheduling
 public class AmbleApplication {
-
 	public static void main(String[] args) {
-		System.out.println("Cache Application started");
 		SpringApplication.run(AmbleApplication.class, args);
+		TCPServer tcpServer = new TCPServer();
+		tcpServer.keepServerRunning();
 	}
-
 }
