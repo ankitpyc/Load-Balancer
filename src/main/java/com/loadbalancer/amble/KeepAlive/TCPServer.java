@@ -28,7 +28,7 @@ public class TCPServer {
                 logger.info("Connection established with the Client : {}", clientSocket.toString());
 
             } catch (Exception ex) {
-                logger.warn("Exception recieved at the port {}", ex.getMessage());
+                logger.warn("Exception received at the port {}", ex.getMessage());
             }
         }
     }

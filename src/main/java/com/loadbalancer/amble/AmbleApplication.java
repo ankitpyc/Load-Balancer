@@ -12,6 +12,7 @@ public class AmbleApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AmbleApplication.class, args);
 		TCPServer tcpServer = new TCPServer();
+		//Start the TCP Server
 		tcpServer.keepServerRunning();
 	}
 }
