@@ -24,7 +24,7 @@ public class DiscoveryService implements DiscoveryServiceImpl {
 
 
     /**
-     * @param serverDetails
+     * @param serverDetails sd
      * @return
      */
     @Override
@@ -44,7 +44,7 @@ public class DiscoveryService implements DiscoveryServiceImpl {
      */
 
     @Override
-    public void removeServerFromRegistery(String serverId) {
+    public void removeServerFromRegistry(String serverId) {
         if(activeServerMap.containsKey(serverId)){
             ActiveNode activeNode = activeServerMap.get(serverId);
             DiscoveryUtils.removeServerFromList(activeNodeList,inActiveServerMap,activeNode);
@@ -55,8 +55,8 @@ public class DiscoveryService implements DiscoveryServiceImpl {
      * @param serverDetails
      */
     @Override
-    public void removeServerFromRegistery(ServerDetails serverDetails) {
+    public void removeServerFromRegistry(ServerDetails serverDetails) {
         String serverId = DiscoveryUtils.getServerId(serverDetails);
-        removeServerFromRegistery(serverId);
+        removeServerFromRegistry(serverId);
     }
 }

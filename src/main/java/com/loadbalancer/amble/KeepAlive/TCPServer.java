@@ -1,10 +1,12 @@
 package com.loadbalancer.amble.KeepAlive;
 
+import com.loadbalancer.amble.ConnectionPool.WorkerPool;
+import com.loadbalancer.amble.Connections.TCPConnection;
+import com.loadbalancer.amble.SchedulerPool.TCPConnectionPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -12,6 +14,12 @@ import java.net.Socket;
 
 @Component
 public class TCPServer {
+
+    @Autowired
+    WorkerPool workerPool;
+
+    @Autowired
+    TCPConnectionPool tcpConnectionPool;
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void keepServerRunning() {
@@ -26,7 +34,15 @@ public class TCPServer {
             try {
                 Socket clientSocket = serverSocket.accept();
                 logger.info("Connection established with the Client : {}", clientSocket.toString());
-
+                workerPool.getWorkerService().submit(()->{
+                    TCPConnection serSocket = null;
+                    try {
+                        serSocket = tcpConnectionPool.getConnection();
+                        tcpConnectionPool.getConnection().forwardTCPConnection(clientSocket);
+                    } catch (IOException e) {
+                        tcpConnectionPool.releaseConnection(serSocket);
+                    }
+                });
             } catch (Exception ex) {
                 logger.warn("Exception received at the port {}", ex.getMessage());
             }

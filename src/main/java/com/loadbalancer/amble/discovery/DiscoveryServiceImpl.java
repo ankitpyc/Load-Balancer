@@ -8,9 +8,8 @@ public interface DiscoveryServiceImpl {
     public DiscoveryResponse registerServer(ServerDetails serverDetails);
 
     //Method to de-register
-    public void removeServerFromRegistery(String serverId);
+    public void removeServerFromRegistry(String serverId);
 
-    public void removeServerFromRegistery(ServerDetails serverDetails);
-
+    public void removeServerFromRegistry(ServerDetails serverDetails);
 
 }
