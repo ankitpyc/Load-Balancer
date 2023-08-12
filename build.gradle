@@ -31,10 +31,10 @@ repositories {
 dependencies {
 	implementation platform('org.springframework.boot:spring-boot-dependencies:2.7.8')
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	implementation 'org.apache.commons:commons-pool2:2.11.1'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 }
