@@ -1,15 +1,8 @@
 package com.loadbalancer.amble.Health;
 
 import com.loadbalancer.amble.Health.impl.HealthServiceImpl;
-import com.loadbalancer.amble.ServerConfiguration.domain.ActiveNodeList;
-import com.loadbalancer.amble.ServerConfiguration.domain.ServerDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.concurrent.ConcurrentHashMap;
-
 
 /*
 TODO : This Health service will be invoked every time to perform Health Checks
