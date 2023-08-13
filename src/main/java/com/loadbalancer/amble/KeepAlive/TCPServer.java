@@ -37,8 +37,9 @@ public class TCPServer {
                 workerPool.getWorkerService().submit(()->{
                     TCPConnection serSocket = null;
                     try {
-                        serSocket = tcpConnectionPool.getConnection();
-                        tcpConnectionPool.getConnection().forwardTCPConnection(clientSocket);
+                        //TODO: Add logic here to get Server where this request should be forwarded.
+                        serSocket = tcpConnectionPool.getConnection("127.0.0.1",8088);
+                        serSocket.forwardTCPConnection(clientSocket);
                     } catch (IOException e) {
                         tcpConnectionPool.releaseConnection(serSocket);
                     }
